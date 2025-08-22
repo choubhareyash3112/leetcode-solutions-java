@@ -1,0 +1,47 @@
+import java.util.*;
+
+public class Main {
+
+    public static String DistinctWindow(String s){
+        //write code here
+       HashSet<Character> hs=new HashSet<>();
+       for(char ch:s.toCharArray()){
+        hs.add(ch);
+       }
+
+       int reqsize=hs.size();
+
+       HashMap<Character,Integer> hamap=new HashMap<>();
+
+       int start=0;
+       int end=0;
+       String out="";
+       int minsize=Integer.MAX_VALUE;
+       
+       while(end<s.length()){
+          
+          char ch=s.charAt(end);
+
+          hamap.put(ch,hamap.getOrDefault(ch, 0) + 1);
+
+          while(hamap.size()==reqsize){
+             String temp=s.substring(start,end+1);
+             if(temp.length()<minsize){
+                minsize=temp.length();
+                out=temp;
+             }
+
+             char left=s.charAt(start);
+             hamap.put(left,hamap.get(left)-1);
+             if(hamap.get(left)==0){
+                hamap.remove(left);
+             }
+             start++;
+          }
+          end++;
+
+       }
+
+       return out;
+
+    }
