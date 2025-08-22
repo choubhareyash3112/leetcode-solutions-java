@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class Main {
+
+    public static long DistinctCharacterSubstring(String s){
+        //write code here
+       
+        
+        HashSet<Character> temp=new HashSet<>();
+        int start=0;
+        int end=0;
+        long c=0;
+        
+        while(end<s.length()){
+         
+         char ch=s.charAt(end);
+         
+
+         while(temp.contains(ch)){
+            temp.remove(s.charAt(start));
+            start++;
+         }
+
+        temp.add(ch);
+        c+=(end-start+1);
+         end++;
+        }
+
+        return c;
+    }
