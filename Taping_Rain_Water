@@ -1,0 +1,32 @@
+class Solution {
+    public int trap(int[] height) {
+        int sum=0;
+        int leftmax=height[0];
+        int rightmax=height[height.length-1];
+        int l=1;
+        int r=height.length-2;
+
+        while(l<=r){
+            if(leftmax<=rightmax){
+                if(leftmax-height[l]>0){
+                    sum+=leftmax-height[l];
+                }
+                if(leftmax<height[l]){
+                    leftmax=height[l];
+                }
+                l++;
+            }
+            else{
+                if(rightmax-height[r]>0){
+                    sum+=rightmax-height[r];
+                }
+                if(rightmax<height[r]){
+                    rightmax=height[r];
+                }
+                r--;
+            }
+        }
+
+        return sum;
+    }
+}
